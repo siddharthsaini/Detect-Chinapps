@@ -1,16 +1,7 @@
-# car
-
-App to remove all Chinese Applications from your Device.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<h1 align="center"> CHINESE APPS REMOVER </h1> <br>
+<p align="center">Will soon be available on PLAY STORE (currently under review) </p>
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=tech.siddharthsaini.car">
+    <img alt="Chinese Apps Remover" title="Chinese Apps Remover" src="https://raw.githubusercontent.com/sidxharth/Chinese-Apps-Remover/master/share.png?token=AMYBFDCTFL5VXIMXU7U6QT264BZ6U" width="450">
+  </a>
+</p>
