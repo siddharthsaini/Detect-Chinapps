@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       title: 'Chinese Apps Remover',
       home: Splash(),
       routes: {
-        // HomePage.id: (context) => HomePage(),
         ListScreen.id: (context) => ListScreen(),
         About.id: (context) => About(),
       },

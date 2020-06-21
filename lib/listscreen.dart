@@ -1,10 +1,13 @@
 import 'package:car/button.dart';
 import 'package:car/package.dart';
 import 'package:flutter/material.dart';
-import 'package:uninstall_apps/uninstall_apps.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'package:device_apps/device_apps.dart';
 import 'package:share/share.dart';
+import 'package:intent/intent.dart' as android_intent;
+import 'package:intent/action.dart' as android_action;
+import 'package:url_launcher/url_launcher.dart';
 
 class ListScreen extends StatefulWidget {
   static const id = 'listscreen';
@@ -15,21 +18,13 @@ class ListScreen extends StatefulWidget {
 
 class _ListScreenState extends State<ListScreen> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  bool _none = false;
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           setState(() {
-            _none = false;
-            this.build(context);
+            ListScreen();
           });
         },
         backgroundColor: Colors.green,
@@ -39,7 +34,7 @@ class _ListScreenState extends State<ListScreen> {
           size: 25,
         ),
         label: Text(
-          "REFRESH",
+          "RESCAN",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -49,8 +44,10 @@ class _ListScreenState extends State<ListScreen> {
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
-          Share.share(
-              "Hey, I'm supporting #AtmaNirbharBharat by using Chinese Apps Remover to remove all chinese apps from my device, what about you? Click this link to use the app https://play.google.com/store/apps/details?id=tech.siddharthsaini.car");
+          Share.share("Hey, I'm supporting *#AtmaNirbharBharat* by using *Chinese Apps Remover* to remove all Chinese Apps from my device, *what about you?*\n\n" +
+              "This app allows you to *remove 200+ chinese apps* from your device and *suggests alternative apps*.\n\n" +
+              "Google Play Store *rejected this app* and similar apps were also removed.\n\n" +
+              "Click this link to *download and install* the app http://startupmeet.in/apk/chinese-apps-remover.apk");
         },
         child: Container(
           decoration: new BoxDecoration(
@@ -89,31 +86,28 @@ class _ListScreenState extends State<ListScreen> {
       body: FutureBuilder(
         future: DeviceApps.getInstalledApplications(
           includeAppIcons: true,
+          includeSystemApps: false,
+          onlyAppsWithLaunchIntent: false,
         ),
         builder: (context, data) {
-          List<dynamic> chinese = new List();
-          if (_none == false) {
-            Future.delayed(const Duration(milliseconds: 4000), () {
-              if (data.data != null) {
-                setState(() {
-                  _none = true;
-                });
-              }
-            });
+          if (data.data == null) {
             return Center(
                 child: CircularProgressIndicator(
               backgroundColor: Colors.orange[700],
               valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
             ));
           } else {
-            for (var apps in data.data) {
-              for (var code in package) {
-                if (apps.packageName == code) {
-                  chinese.add(apps);
-                }
+            List<Application> chineseapps = data.data;
+            List<Application> apps = List<Application>();
+
+            chineseapps.forEach((element) {
+              if (package.contains(element.packageName) == true &&
+                  element.systemApp == false) {
+                apps.add(element);
               }
-            }
-            return chinese.isEmpty
+            });
+
+            return apps.isEmpty
                 ? Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -179,96 +173,154 @@ class _ListScreenState extends State<ListScreen> {
                     padding: const EdgeInsets.only(top: 14.0),
                     child: ListView.builder(
                         itemBuilder: (context, position) {
-                          Application app = chinese[position];
-                          return Stack(children: <Widget>[
-                            GestureDetector(
-                              onTap: (){},
-                              child: new Container(
-                                height: 90.0,
-                                margin: EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 10,
-                                ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      margin: EdgeInsets.only(
-                                          left: 40, right: 18.0),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.rectangle,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        boxShadow: <BoxShadow>[],
-                                      ),
-                                      child: Container(
-                                        constraints: BoxConstraints.expand(),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 50, right: 20),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Text(
-                                                    "${app.appName}",
-                                                    style: TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              IconButton(
-                                                  icon: Icon(
-                                                    Icons.delete_forever,
-                                                    color: Colors.red,
-                                                    size: 35,
-                                                  ),
-                                                  onPressed: () {
-                                                    UninstallApps.uninstall(
-                                                        app.packageName);
-                                                    Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 5000),
-                                                        () {
-                                                      setState(() {
-                                                        this.build(context);
-                                                      });
-                                                    });
-                                                  }),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
+                          Application app = apps[position];
+                          return Column(
+                            children: [
+                              Stack(
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: new Container(
+                                      height: 90.0,
                                       margin: EdgeInsets.symmetric(
-                                        vertical: 16.0,
+                                        vertical: 10,
+                                        horizontal: 10,
                                       ),
-                                      alignment: FractionalOffset.centerLeft,
-                                      child: Image(
-                                        image: app is ApplicationWithIcon
-                                            ? MemoryImage(app.icon)
-                                            : null,
-                                        height: 80,
-                                        width: 80,
+                                      child: Stack(
+                                        children: <Widget>[
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                left: 40, right: 18.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              boxShadow: <BoxShadow>[],
+                                            ),
+                                            child: Container(
+                                              constraints:
+                                                  BoxConstraints.expand(),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 50, right: 20),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          "${app.appName}",
+                                                          style: TextStyle(
+                                                            fontSize: 17,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    IconButton(
+                                                      icon: Icon(
+                                                        Icons.delete_forever,
+                                                        color: Colors.red,
+                                                        size: 35,
+                                                      ),
+                                                      onPressed: () async {
+                                                        String ck =
+                                                            app.packageName;
+                                                        String an = app.appName;
+                                                        android_intent.Intent()
+                                                          ..setAction(
+                                                              android_action
+                                                                  .Action
+                                                                  .ACTION_DELETE)
+                                                          ..setData(Uri.parse(
+                                                              "package:${app.packageName}"))
+                                                          ..startActivityForResult()
+                                                              .then(
+                                                                  (data) async {
+                                                            bool isInstalled =
+                                                                await DeviceApps
+                                                                    .isAppInstalled(
+                                                                        ck);
+                                                            if (isInstalled ==
+                                                                false) {
+                                                              Fluttertoast.showToast(
+                                                                  msg:
+                                                                      '$an App Deleted',
+                                                                  toastLength: Toast
+                                                                      .LENGTH_LONG,
+                                                                  gravity:
+                                                                      ToastGravity
+                                                                          .BOTTOM,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .green,
+                                                                  textColor:
+                                                                      Colors
+                                                                          .white);
+                                                              apps.removeAt(
+                                                                  position);
+                                                              setState(() {
+                                                                ListScreen();
+                                                              });
+                                                            }
+                                                          }, onError: (e) {
+                                                            print(e);
+                                                            print('fail');
+                                                          });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.symmetric(
+                                              vertical: 16.0,
+                                            ),
+                                            alignment:
+                                                FractionalOffset.centerLeft,
+                                            child: Image(
+                                              image: app is ApplicationWithIcon
+                                                  ? MemoryImage(app.icon)
+                                                  : null,
+                                              height: 80,
+                                              width: 80,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ]);
+                              RaisedButton(
+                                onPressed: () async {
+                                  String url =
+                                      'https://www.google.com/search?q=alternative+apps+for+${app.appName}';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                color: Colors.grey[300],
+                                child: Text('Alternatives for ${app.appName}'),
+                              ),
+                            ],
+                          );
                         },
-                        itemCount: chinese.length),
+                        itemCount: apps.length),
                   );
           }
         },
