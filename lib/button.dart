@@ -48,7 +48,7 @@ AppBar mainAppBar() {
   return AppBar(
     backgroundColor: Colors.orange[700],
     title: Text(
-      'Chinese Apps Remover',
+      'Detect Chinapps',
       style: TextStyle(
         color: Colors.white,
         // fontSize: 18,
@@ -85,12 +85,12 @@ AppBar mainAppBar() {
         onSelected: (key) async {
           if (key == "abt") {
             const url =
-                'https://github.com/sidxharth/Chinese-Apps-Remover/blob/master/README.md';
+                'https://github.com/siddharthsaini/Chinese-Apps-Remover/blob/master/README.md';
             launch(url);
           }
           if (key == "pp") {
             const url =
-                'https://github.com/sidxharth/Chinese-Apps-Remover/blob/master/Privacy-Policy.md';
+                'https://github.com/siddharthsaini/Chinese-Apps-Remover/blob/master/Privacy-Policy.md';
             launch(url);
           }
           if (key == "rate") {

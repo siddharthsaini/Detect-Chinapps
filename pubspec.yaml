@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -16,10 +16,11 @@ dependencies:
   uninstall_apps: ^0.0.4
   flutter_appavailability: ^0.0.21
   splashscreen: ^1.2.0
-  flutter_svg: ^0.17.4
   share: ^0.6.4+3
   url_launcher: 
   device_apps: 
+  fluttertoast:
+  intent:
 
 dev_dependencies:
   flutter_test:

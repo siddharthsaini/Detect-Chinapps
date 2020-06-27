@@ -22,8 +22,7 @@ class About extends StatelessWidget {
               ),
             ),
             Text(
-              "Tap on 'SCAN DEVICE NOW' to find out Chinese Apps installed in your device. "
-              "These apps are either based in China or backed by Chinese Organisations.",
+              "Tap on 'SCAN DEVICE NOW' to find installed Chinapps in your device.",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 17,

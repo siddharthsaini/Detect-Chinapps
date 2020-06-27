@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:car/about.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Splash extends StatefulWidget {
   static const String id = 'splash_screen';
@@ -56,7 +55,7 @@ class _SplashState extends State<Splash> {
                 //   width: MediaQuery.of(context).size.width * 0.75,
                 // ),
                 Text(
-                  "CHINESE APPS REMOVER",
+                  "DETECT CHINAPPS",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,

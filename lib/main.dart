@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Chinese Apps Remover',
+      title: 'Detect Chinapps',
       home: Splash(),
       routes: {
         // HomePage.id: (context) => HomePage(),
