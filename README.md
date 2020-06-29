@@ -3,10 +3,10 @@
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=tech.siddharthsaini.car">
     <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps/master/share.jpg?token=AMYBFDCTFL5VXIMXU7U6QT264BZ6U" width="450">
-  </a>
+<!--   </a>
 </p>
 <p align="center">Developed for HackJaipur, 2020</p>
-<p align="center">
+<p align="center"> -->
   <a>
     <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps/master/1.jpg" width="120">
   </a>
