@@ -35,4 +35,4 @@ Kindly inform us if you see any content in the app violating copyrights so that 
 
 Hit me up -> www.siddharthsaini.tech
 
-Source Code: https://github.com/siddharthsaini/Chinese-Apps-Remover
+Previous Version: https://github.com/sidxharth/Chinese-Apps-Remover
