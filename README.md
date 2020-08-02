@@ -1,5 +1,5 @@
 <h1 align="center"> DETECT CHINAPPS </h1> <br>
-<p align="center">Under review ¯\_(ツ)_/¯</p>
+<p align="center">Developed for HackJaipur 2020 Virtual Hackathon</p>
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=tech.siddharthsaini.car">
     <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps/master/share.jpg?token=AMYBFDCTFL5VXIMXU7U6QT264BZ6U" width="450">
