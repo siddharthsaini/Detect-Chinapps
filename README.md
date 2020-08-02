@@ -2,22 +2,22 @@
 <p align="center">Developed for HackJaipur 2020 Virtual Hackathon</p>
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=tech.siddharthsaini.car">
-    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur-Hackathon/master/share.jpg?token=AMYBFDCTFL5VXIMXU7U6QT264BZ6U" width="450">
+    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur/master/share.jpg?token=AMYBFDCTFL5VXIMXU7U6QT264BZ6U" width="450">
   </a>
 </p>
 <p></p>
 <p align="center">
   <a>
-    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur-Hackathon/master/1.jpg" width="120">
+    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur/master/1.jpg" width="120">
   </a>
   <a>
-    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur-Hackathon/master/2.jpg" width="120">
+    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur/master/2.jpg" width="120">
   </a>
   <a>
-    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur-Hackathon/master/3.jpg" width="120">
+    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur/master/3.jpg" width="120">
   </a>
   <a>
-    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur-Hackathon/master/4.jpg" width="120">
+    <img alt="Detect Chinapps" title="Detect Chinapps" src="https://raw.githubusercontent.com/siddharthsaini/Detect-Chinapps-HackJaipur/master/4.jpg" width="120">
   </a>
 </p>
 
